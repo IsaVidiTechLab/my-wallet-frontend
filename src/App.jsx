@@ -5,6 +5,7 @@ import IsAnon from './components/IsAnon'
 import IsPrivate from './components/IsPrivate'
 import HomePage from './pages/HomePage'
 import { Routes, Route } from "react-router-dom";
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
           <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
           <Route path="/" element={<IsPrivate><HomePage /></IsPrivate>} />
+          <Route path="/category" element={<IsPrivate><CategoryPage /></IsPrivate>} />
         </Routes>
       </div>
     </>

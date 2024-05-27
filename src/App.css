@@ -1,0 +1,18 @@
+.icon-edit {
+  color: #007bff;
+  margin-left: 0.5rem;
+}
+
+.icon-delete {
+  color: #dc3545;
+  margin-left: 0.5rem;
+}
+
+.categories-list{
+    list-style: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 0.3rem;
+    width: 60%;
+}
