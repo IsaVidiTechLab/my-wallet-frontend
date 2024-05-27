@@ -6,6 +6,7 @@ import IsPrivate from './components/IsPrivate'
 import HomePage from './pages/HomePage'
 import { Routes, Route } from "react-router-dom";
 import ExpensePage from './pages/ExpensePage'
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<IsPrivate><HomePage /></IsPrivate>} />
           <Route path="/expense" element={<IsPrivate><ExpensePage/></IsPrivate>} />
           
+          <Route path="/category" element={<IsPrivate><CategoryPage /></IsPrivate>} />
         </Routes>
       </div>
     </>
