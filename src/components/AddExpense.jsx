@@ -134,7 +134,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense }) {
                 onChange={(e)=>setDescription(e.target.value)}
                 placeholder="Description"
             />
-            <button type="submit">{editingExpense ? 'Update Expense' : 'Add Expense'}</button>
+            <button type="submit">{editingExpense ? 'Update Expense' : 'Save Expense'}</button>
         </form>
     </div>
   )
