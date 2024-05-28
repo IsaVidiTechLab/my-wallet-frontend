@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import axios from 'axios';
 
-function AddExpense({ storedToken, editingExpense, setEditingExpense }) {
+function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefresh }) {
 
     const API_URL = import.meta.env.VITE_API_URL
 
@@ -38,7 +38,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense }) {
             setTitle(editingExpense.title);
             setAmount(editingExpense.amount);
             setDescription(editingExpense.description);
-            setDate(editingExpense.date.split('T')[0]); // Adjust date format if necessary
+            setDate(editingExpense.date.split('T')[0]); 
             setSelectedCategory(editingExpense.catId);
             setCatId(editingExpense.catId);
         }
@@ -81,13 +81,13 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense }) {
                 });
                 console.log('New Expense:', response.data);
             }
+            triggerRefresh();
         } catch (error) {
             console.log(error);
         }
 
         clearFields();
 
-        // console.log(`${title} ${amount} ${description} ${catId} ${date}`)
     }
   return (
     <div>

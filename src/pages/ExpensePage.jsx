@@ -6,6 +6,12 @@ function ExpensePage() {
 
     const storedToken = localStorage.getItem("authToken");
     const [editingExpense, setEditingExpense] = useState(null);
+
+    const [refreshKey, setRefreshKey] = useState(0);
+
+    const triggerRefresh = () => {
+        setRefreshKey(prevKey => prevKey + 1);
+    };
     
     const handleEdit = (expense) => {
         setEditingExpense(expense);
@@ -14,8 +20,8 @@ function ExpensePage() {
   return (
     <div>
       Expense Page
-      <AddExpense storedToken={storedToken} editingExpense={editingExpense} setEditingExpense={setEditingExpense}/>
-      <AllExpenses storedToken={storedToken} onEdit={handleEdit}/>
+      <AddExpense storedToken={storedToken} editingExpense={editingExpense} setEditingExpense={setEditingExpense} triggerRefresh={triggerRefresh}/>
+      <AllExpenses storedToken={storedToken} onEdit={handleEdit} refreshKey={triggerRefresh}/>
     </div>
   )
 }

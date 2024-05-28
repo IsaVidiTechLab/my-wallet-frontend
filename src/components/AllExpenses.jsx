@@ -1,47 +1,51 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-function AllExpenses({ storedToken, onEdit }) {
+function AllExpenses({ storedToken, onEdit, refreshKey }) {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const [expenses, setExpenses] = useState([]);
     const [categories, setCategories] = useState([]);
 
+    const fetchExpenses = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/api/expenses`, {
+                headers: { Authorization: `Bearer ${storedToken}` }
+            });
+            setExpenses(response.data);
+            console.log("AllExpense expense", response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/api/categories`, {
+                headers: { Authorization: `Bearer ${storedToken}` }
+            });
+            setCategories(response.data);
+            console.log("AllExpense categories", response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
-        const fetchExpenses = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/api/expenses`, {
-                    headers: { Authorization: `Bearer ${storedToken}` }
-                });
-                setExpenses(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/api/categories`, {
-                    headers: { Authorization: `Bearer ${storedToken}` }
-                });
-                setCategories(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchExpenses();
         fetchCategories();
-    }, [API_URL, storedToken,expenses]);
+    }, [API_URL, storedToken]);
+
+    useEffect(() => {
+        fetchExpenses();
+    }, [API_URL, storedToken, refreshKey]);
 
     const handleDelete = async (id) => {
         try {
             await axios.delete(`${API_URL}/api/expenses/${id}`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
             });
-            setExpenses(expenses.filter(expense => expense._id !== id));
+            onEdit(); 
+            refreshKey();
         } catch (error) {
             console.log(error);
         }
