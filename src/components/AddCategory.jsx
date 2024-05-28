@@ -63,7 +63,7 @@ function AddCategory() {
       .then((response) => response.json())
       .then((data) => setCategories(data))
       .catch((error) => console.log(error));
-  }, [API_URL]);
+  }, [API_URL, categories]);
 
   const handleEdit = (category) => {
     setCatName(category.catName);
