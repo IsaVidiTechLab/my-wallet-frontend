@@ -109,8 +109,8 @@ function AddCategory() {
           {categories.map((category) => (
             <li key={category._id} className="categories-list">
               {category.catName}
-              <FaEdit onClick={() => handleEdit(category)} className="icon-edit" />
-              <FaTrash onClick={() => handleDelete(category._id)} className="icon-delete"/>
+              <FaEdit onClick={() => handleEdit(category)} className="bg-blue-600" />
+              <FaTrash onClick={() => handleDelete(category._id)} className=" bg-red-600"/>
             </li>
           ))}
         </ul>
