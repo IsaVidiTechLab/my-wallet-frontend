@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage'
 import { Routes, Route } from "react-router-dom";
 import ExpensePage from './pages/ExpensePage'
 import CategoryPage from './pages/CategoryPage';
+import YearlyReportPage from './pages/YearlyReportPage';
+import MonthlyReportPage from './pages/MonthlyReportPage';
 
 function App() {
 

@@ -1,66 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Bar } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend); 
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-function MonthlyExpenseGraph({ storedToken, refreshKey }) {
+function MonthlyExpenseGraph({ storedToken, month }) {
     const API_URL = import.meta.env.VITE_API_URL;
     const [expenses, setExpenses] = useState([]);
-    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const fetchExpenses = async () => {
+            const [year, monthIndex] = month.split('-');
+            const requestBody = {
+                year: parseInt(year),
+                month: parseInt(monthIndex)
+            };
+
             try {
-                const response = await axios.get(`${API_URL}/api/expenses`, {
+                const response = await axios.post(`${API_URL}/api/expenses/monthlyReport`, requestBody, {
                     headers: { Authorization: `Bearer ${storedToken}` }
                 });
-                setExpenses(response.data);
+                if (response.data && Array.isArray(response.data.expenses)) {
+                    setExpenses(response.data.expenses);
+                } else {
+                    setExpenses([]);
+                    console.error('Unexpected response data format:', response.data);
+                }
             } catch (error) {
                 console.log(error);
+                setExpenses([]);
             }
         };
         fetchExpenses();
-    }, [API_URL, storedToken, refreshKey]);
+    }, [API_URL, storedToken, month]);
 
-
-  useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/api/categories`, {
-                    headers: { Authorization: `Bearer ${storedToken}` }
-                });
-                setCategories(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchCategories();
-    }, [API_URL, storedToken]);
-
-    const getCategoryName = (catId) => {
-        const category = categories.find(category => category._id === catId);
-        return category ? category.catName : 'Unknown Category';
-    };
-
-    const groupedExpenses = expenses.reduce((acc, expense) => {
-        const categoryName = getCategoryName(expense.catId);
-        if (!acc[categoryName]) {
-            acc[categoryName] = 0;
-        }
-        acc[categoryName] += expense.amount;
-        return acc;
-    }, {});
+    const totalAmount = expenses.reduce((sum, expense) => sum + expense.amount, 0);
 
     const data = {
-        labels: Object.keys(groupedExpenses),
+        labels: expenses.map(expense => expense.title),
         datasets: [
             {
-                label: 'Expenses by Category',
-                data: Object.values(groupedExpenses),
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+                label: 'Expenses by Percentage',
+                data: expenses.map(expense => ((expense.amount / totalAmount) * 100).toFixed(2)),
+                backgroundColor: expenses.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.2)`),
+                borderColor: expenses.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`),
                 borderWidth: 1,
             },
         ],
@@ -74,16 +58,16 @@ function MonthlyExpenseGraph({ storedToken, refreshKey }) {
             },
             title: {
                 display: true,
-                text: 'Expenses by Category',
+                text: 'Expenses by Percentage of Total Spent',
             },
         },
     };
 
     return (
-        <div>
-            <Bar data={data} options={options} />
+        <div className='w-1/3'>
+            <Pie data={data} options={options} />
         </div>
     );
 }
 
-export default MonthlyExpenseGraph
+export default MonthlyExpenseGraph;
