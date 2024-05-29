@@ -38,7 +38,7 @@ function CategoryPage() {
         onEdit={handleEdit} 
         categories={categories} 
         setCategories={handleCategoryChange}
-        refreshKey={refreshKey}
+        refreshKey={triggerRefresh}
       />
     </div>
   );
