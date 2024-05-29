@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import axios from 'axios';
 
 function YearlyReportPage() {
+
 
   const API_URL = import.meta.env.VITE_API_URL;
   const storedToken = localStorage.getItem("authToken");
   const [year,setYear] = useState(new Date().getFullYear())
   const [mothlyData, setMonthlyData] = useState([]);
+  const months = [ "January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December" ];
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +29,7 @@ function YearlyReportPage() {
       });
 
   }
+
 
   return (
     <div>
@@ -50,7 +55,7 @@ function YearlyReportPage() {
       {mothlyData.map((data)=>{
         return (
           <tr key = {data.month}>
-            <td>{data.month}</td>
+            <td>{months[data.month-1]}</td>
             <td>{data.totalAmount}</td>
           </tr>
         );
