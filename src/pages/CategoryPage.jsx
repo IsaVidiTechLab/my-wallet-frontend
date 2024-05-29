@@ -7,6 +7,12 @@ function CategoryPage() {
   const [editingCategory, setEditingCategory] = useState(null);
   const [categories, setCategories] = useState([]);
 
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const triggerRefresh = () => {
+    setRefreshKey(prevKey => prevKey + 1);
+  }
+
   const handleEdit = (category) => {
     console.log('Editing category:', category); 
     setEditingCategory(category);
@@ -25,12 +31,14 @@ function CategoryPage() {
         setEditingCategory={setEditingCategory} 
         categories={categories} 
         setCategories={handleCategoryChange} 
+        triggerRefresh={triggerRefresh}
       />
       <AllCategories 
         storedToken={storedToken} 
         onEdit={handleEdit} 
         categories={categories} 
         setCategories={handleCategoryChange}
+        refreshKey={refreshKey}
       />
     </div>
   );

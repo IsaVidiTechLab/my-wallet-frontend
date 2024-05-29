@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
-function AddCategory({ storedToken, editingCategory, setEditingCategory, categories, setCategories }) {
+function AddCategory({ storedToken, editingCategory, setEditingCategory, categories, setCategories, triggerRefresh }) {
   const API_URL = import.meta.env.VITE_API_URL;
   const [catName, setCatName] = useState("");
   const { user } = useContext(AuthContext);
@@ -48,6 +48,7 @@ function AddCategory({ storedToken, editingCategory, setEditingCategory, categor
           }
         );
         setCategories([...categories, response.data]);
+        triggerRefresh();
         console.log("New Category:", response.data);
       }
     } catch (error) {

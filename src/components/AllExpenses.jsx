@@ -1,12 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
 function AllExpenses({ storedToken, onEdit, refreshKey }) {
     const API_URL = import.meta.env.VITE_API_URL;
-
     const [expenses, setExpenses] = useState([]);
     const [categories, setCategories] = useState([]);
-
     const fetchExpenses = async () => {
         try {
             const response = await axios.get(`${API_URL}/api/expenses`, {
@@ -18,7 +15,6 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
             console.log(error);
         }
     };
-
     const fetchCategories = async () => {
         try {
             const response = await axios.get(`${API_URL}/api/categories`, {
@@ -30,28 +26,27 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
             console.log(error);
         }
     };
-
     useEffect(() => {
         fetchCategories();
     }, [API_URL, storedToken]);
-
+    useEffect(() => {
+        fetchExpenses();
+    }, [API_URL, storedToken, refreshKey]);
     const handleDelete = async (id) => {
         try {
             await axios.delete(`${API_URL}/api/expenses/${id}`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
             });
-            onEdit(); 
+            onEdit();
             refreshKey();
         } catch (error) {
             console.log(error);
         }
     };
-
     const getCategoryName = (catId) => {
         const category = categories.find(category => category._id === catId);
         return category ? category.catName : 'Unknown Category';
     };
-
     return (
         <div>
             <table>
@@ -87,5 +82,4 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
         </div>
     );
 }
-
 export default AllExpenses;

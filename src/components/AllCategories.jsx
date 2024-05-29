@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 
-function AllCategories({ storedToken, onEdit, categories, setCategories }) {
+function AllCategories({ storedToken, onEdit, categories, setCategories, refreshKey }) {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -19,7 +19,8 @@ function AllCategories({ storedToken, onEdit, categories, setCategories }) {
     };
 
     fetchCategories();
-  }, [API_URL, storedToken]); 
+    
+  }, [API_URL, storedToken, refreshKey]); 
 
   const handleDelete = async (id) => {
     try {
@@ -27,6 +28,7 @@ function AllCategories({ storedToken, onEdit, categories, setCategories }) {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       setCategories((prevCategories) => prevCategories.filter((category) => category._id !== id));
+      refreshKey();
     } catch (error) {
       console.error("Category not deleted", error);
     }
