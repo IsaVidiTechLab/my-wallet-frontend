@@ -35,10 +35,6 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
         fetchCategories();
     }, [API_URL, storedToken]);
 
-    useEffect(() => {
-        fetchExpenses();
-    }, [API_URL, storedToken, refreshKey]);
-
     const handleDelete = async (id) => {
         try {
             await axios.delete(`${API_URL}/api/expenses/${id}`, {
