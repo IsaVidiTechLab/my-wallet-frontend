@@ -7,7 +7,8 @@ import HomePage from './pages/HomePage'
 import { Routes, Route } from "react-router-dom";
 import ExpensePage from './pages/ExpensePage'
 import CategoryPage from './pages/CategoryPage';
-import YearlyReportPage from './pages/YearlyReportPage'
+import YearlyReportPage from './pages/YearlyReportPage';
+import MonthlyReportPage from './pages/MonthlyReportPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/expense" element={<IsPrivate><ExpensePage/></IsPrivate>} />
           <Route path="/category" element={<IsPrivate><CategoryPage /></IsPrivate>} />
           <Route path="/yearly-report" element={<IsPrivate><YearlyReportPage/></IsPrivate>} />
+          <Route path="/monthly-report" element={<IsPrivate><MonthlyReportPage /></IsPrivate>} />
         </Routes>
       </div>
     </>
