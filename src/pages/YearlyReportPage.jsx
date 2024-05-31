@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import axios from 'axios';
+import YearlyExpenseGraph from '../components/YearlyExpenseGraph';
 
 function YearlyReportPage() {
 
@@ -62,6 +63,8 @@ function YearlyReportPage() {
       })}
       </tbody>
     </table>
+    {mothlyData && <YearlyExpenseGraph monthlyData={ mothlyData}/>}
+    
     </div>
     
   )
