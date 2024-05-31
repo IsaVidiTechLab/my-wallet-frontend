@@ -37,14 +37,6 @@ function App() {
             path="/"
             element={
               <IsPrivate>
-                <HomePage />
-              </IsPrivate>
-            }
-          />
-          <Route
-            path="/expense"
-            element={
-              <IsPrivate>
                 <ExpensePage />
               </IsPrivate>
             }

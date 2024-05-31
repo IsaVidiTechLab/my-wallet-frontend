@@ -19,7 +19,7 @@ function ExpensePage() {
     };
 
   return (
-    <div className='main-content'>
+    <div className='main-content bg-white'>
       Expense Page
       <AddExpense storedToken={storedToken} editingExpense={editingExpense} setEditingExpense={setEditingExpense} triggerRefresh={triggerRefresh}/>
       <AllExpenses storedToken={storedToken} onEdit={handleEdit} refreshKey={triggerRefresh}/>
