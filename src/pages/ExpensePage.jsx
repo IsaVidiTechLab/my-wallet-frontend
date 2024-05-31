@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import AddExpense from '../components/AddExpense'
 import AllExpenses from '../components/AllExpenses';
+import "../style/ExpensePage.css";
 
 function ExpensePage() {
 
@@ -18,7 +19,7 @@ function ExpensePage() {
     };
 
   return (
-    <div>
+    <div className='main-content'>
       Expense Page
       <AddExpense storedToken={storedToken} editingExpense={editingExpense} setEditingExpense={setEditingExpense} triggerRefresh={triggerRefresh}/>
       <AllExpenses storedToken={storedToken} onEdit={handleEdit} refreshKey={triggerRefresh}/>

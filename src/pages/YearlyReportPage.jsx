@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import axios from 'axios';
 import YearlyExpenseGraph from '../components/YearlyExpenseGraph';
+import "../style/YearlyReportPage.css";
 
 function YearlyReportPage() {
 
@@ -33,7 +34,7 @@ function YearlyReportPage() {
 
 
   return (
-    <div>
+    <div className='main-content'>
     <form onSubmit={handleSubmit}>
       <input
                 type="number"

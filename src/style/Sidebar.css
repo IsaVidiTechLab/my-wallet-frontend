@@ -1,0 +1,21 @@
+.app-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .sidebar .flex-grow {
+    flex-grow: 1;
+  }
+  
+  .sidebar .mt-auto {
+    margin-top: auto;
+  }

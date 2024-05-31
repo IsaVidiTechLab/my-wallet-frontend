@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MonthlyExpenseGraph from '../components/MonthlyExpenseGraph';
+import '../style/MonthlyReportPage.css';
 
 function MonthlyReportPage() {
     const API_URL = import.meta.env.VITE_API_URL;
@@ -42,7 +43,7 @@ function MonthlyReportPage() {
     };
 
     return (
-        <div className=' bg-slate-700'>
+        <div className='main-content'>
             <h1>Monthly Report</h1>
             <form onSubmit={handleSubmit}>
                 <input

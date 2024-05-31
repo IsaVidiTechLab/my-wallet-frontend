@@ -12,13 +12,14 @@ import MonthlyReportPage from './pages/MonthlyReportPage';
 import Sidebar from './components/Sidebar'
 
 
+
 function App() {
 
   return (
     <>
       <div className='app-container'>
-        <Sidebar />
-        <div className='main container'>
+        <IsPrivate><Sidebar /></IsPrivate>
+        <div>
         <Routes>
           <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
           <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />

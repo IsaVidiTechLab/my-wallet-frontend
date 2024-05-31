@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddCategory from '../components/AddCategory';
 import AllCategories from '../components/AllCategories';
+import "../style/CategoryPage.css";
 
 function CategoryPage() {
   const storedToken = localStorage.getItem("authToken");
@@ -22,7 +23,7 @@ function CategoryPage() {
   };
 
   return (
-    <div>
+    <div className='main-content'>
       Category Page
       <AddCategory 
         storedToken={storedToken} 
@@ -37,7 +38,7 @@ function CategoryPage() {
         onEdit={handleEdit} 
         categories={categories} 
         setCategories={handleCategoryChange}
-        refreshKey={refreshKey} // Pass refreshKey as a value
+        refreshKey={refreshKey} 
       />
     </div>
   );
