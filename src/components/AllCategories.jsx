@@ -5,37 +5,41 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 function AllCategories({ storedToken, onEdit, categories, setCategories, refreshKey }) {
   const API_URL = import.meta.env.VITE_API_URL;
 
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/api/categories`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+      setCategories(response.data);
+      console.log('Fetched categories:', response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
 
-    const fetchCategories = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/api/categories`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
-        setCategories(response.data);
-        refreshKey();
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    useEffect(() => {
-        fetchCategories();
-    }, [API_URL, storedToken]);
-
-    
-  
-
+  useEffect(() => {
+    fetchCategories();
+  }, [storedToken, refreshKey]); // Only re-fetch when storedToken or refreshKey changes
 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${API_URL}/api/categories/${id}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-      onEdit();
-      refreshKey();
+      console.log('Category deleted:', id);
+      fetchCategories(); // Re-fetch categories after deletion
     } catch (error) {
-      console.error("Category not deleted", error);
+      console.error('Category not deleted:', error);
+    }
+  };
+
+  const handleEdit = async (category) => {
+    try {
+      await onEdit(category);
+      console.log('Category edited:', category);
+      fetchCategories(); // Re-fetch categories after edit
+    } catch (error) {
+      console.error('Category not edited:', error);
     }
   };
 
@@ -45,7 +49,7 @@ function AllCategories({ storedToken, onEdit, categories, setCategories, refresh
         {categories.map((category) => (
           <li key={category._id} className="text-blue-700">
             {category.catName}
-            <FaEdit onClick={() => onEdit(category)} className="inline ml-2 cursor-pointer" />
+            <FaEdit onClick={() => handleEdit(category)} className="inline ml-2 cursor-pointer" />
             <FaTrash onClick={() => handleDelete(category._id)} className="inline ml-2 cursor-pointer" />
           </li>
         ))}
