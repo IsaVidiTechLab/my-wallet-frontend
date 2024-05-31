@@ -1,0 +1,15 @@
+.bgcolor-dashboard{
+    background-color: theme('colors.midnight')
+}
+
+.text-color-login{
+    color : theme('colors.white')
+}
+
+.btn-color-login{
+    background-color: theme('colors.lightblue')
+}
+
+.text-color{
+    color: theme('colors.midnight')
+}
