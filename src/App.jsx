@@ -1,38 +1,82 @@
-import './App.css'
-import SignupPage from './pages/SignupPage'
-import LoginPage from './pages/LoginPage'
-import IsAnon from './components/IsAnon'
-import IsPrivate from './components/IsPrivate'
-import HomePage from './pages/HomePage'
+import "./App.css";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
+import IsAnon from "./components/IsAnon";
+import IsPrivate from "./components/IsPrivate";
+import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
-import ExpensePage from './pages/ExpensePage'
-import CategoryPage from './pages/CategoryPage';
-import YearlyReportPage from './pages/YearlyReportPage';
-import MonthlyReportPage from './pages/MonthlyReportPage';
-import Sidebar from './components/Sidebar'
-
-
+import ExpensePage from "./pages/ExpensePage";
+import CategoryPage from "./pages/CategoryPage";
+import YearlyReportPage from "./pages/YearlyReportPage";
+import MonthlyReportPage from "./pages/MonthlyReportPage";
+import Sidebar from "./components/Sidebar";
 
 function App() {
-
   return (
     <>
-      <div className='app-container'>
-        <IsPrivate><Sidebar /></IsPrivate>
-        <div>
+      <div>
+        <Sidebar />
         <Routes>
-          <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
-          <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
-          <Route path="/" element={<IsPrivate><HomePage /></IsPrivate>} />
-          <Route path="/expense" element={<IsPrivate><ExpensePage/></IsPrivate>} />
-          <Route path="/category" element={<IsPrivate><CategoryPage /></IsPrivate>} />
-          <Route path="/yearly-report" element={<IsPrivate><YearlyReportPage/></IsPrivate>} />
-          <Route path="/monthly-report" element={<IsPrivate><MonthlyReportPage /></IsPrivate>} />
+          <Route
+            path="/signup"
+            element={
+              <IsAnon>
+                <SignupPage />
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <IsAnon>
+                <LoginPage />
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <IsPrivate>
+                <HomePage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/expense"
+            element={
+              <IsPrivate>
+                <ExpensePage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/category"
+            element={
+              <IsPrivate>
+                <CategoryPage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/yearly-report"
+            element={
+              <IsPrivate>
+                <YearlyReportPage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/monthly-report"
+            element={
+              <IsPrivate>
+                <MonthlyReportPage />
+              </IsPrivate>
+            }
+          />
         </Routes>
-        </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

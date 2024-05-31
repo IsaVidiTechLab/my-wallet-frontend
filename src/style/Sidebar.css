@@ -1,8 +1,4 @@
-.app-container {
-    display: flex;
-    height: 100vh;
-  }
-  
+
   .sidebar {
     width: 15rem;
     display: flex;
