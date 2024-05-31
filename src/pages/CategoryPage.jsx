@@ -6,7 +6,6 @@ function CategoryPage() {
   const storedToken = localStorage.getItem("authToken");
   const [editingCategory, setEditingCategory] = useState(null);
   const [categories, setCategories] = useState([]);
-
   const [refreshKey, setRefreshKey] = useState(0);
 
   const triggerRefresh = () => {
@@ -38,7 +37,7 @@ function CategoryPage() {
         onEdit={handleEdit} 
         categories={categories} 
         setCategories={handleCategoryChange}
-        refreshKey={triggerRefresh}
+        refreshKey={refreshKey} // Pass refreshKey as a value
       />
     </div>
   );
