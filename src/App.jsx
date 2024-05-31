@@ -9,12 +9,16 @@ import ExpensePage from './pages/ExpensePage'
 import CategoryPage from './pages/CategoryPage';
 import YearlyReportPage from './pages/YearlyReportPage';
 import MonthlyReportPage from './pages/MonthlyReportPage';
+import Sidebar from './components/Sidebar'
+
 
 function App() {
 
   return (
     <>
-      <div>
+      <div className='app-container'>
+        <Sidebar />
+        <div className='main container'>
         <Routes>
           <Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
           <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
@@ -24,6 +28,7 @@ function App() {
           <Route path="/yearly-report" element={<IsPrivate><YearlyReportPage/></IsPrivate>} />
           <Route path="/monthly-report" element={<IsPrivate><MonthlyReportPage /></IsPrivate>} />
         </Routes>
+        </div>
       </div>
     </>
   )

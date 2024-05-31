@@ -42,7 +42,7 @@ function MonthlyReportPage() {
     };
 
     return (
-        <div>
+        <div className=' bg-slate-700'>
             <h1>Monthly Report</h1>
             <form onSubmit={handleSubmit}>
                 <input

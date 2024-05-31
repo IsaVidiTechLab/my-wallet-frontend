@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: {
+      midnight: '#222831',
+      white: '#eeeeee',
+      lightblue: "#76ABAE",
+      darkgray: "#31363F"
   },
   plugins: [],
+}
 }
