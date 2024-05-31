@@ -68,7 +68,7 @@ function Sidebar() {
           <div className="flex mt-auto">
             {logOutUser && (
               <Link
-                to={"/logout"}
+                to={"/login"}
                 className="flex flex-row items-center pb-4"
                 onClick={handleLogout}
               >

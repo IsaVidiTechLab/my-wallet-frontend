@@ -24,7 +24,7 @@ function CategoryPage() {
 
   return (
     <div className='main-content'>
-      Category Page
+      <h1 className=' font-semibold text-xl pb-3'>Categories</h1>
       <AddCategory 
         storedToken={storedToken} 
         editingCategory={editingCategory} 
