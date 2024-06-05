@@ -110,7 +110,7 @@ function MonthlyExpenseGraph({ storedToken, month }) {
     };
 
     return (
-        <div className='w-1/2 mt-5'>
+        <div className='md:w-1/2 mt-5'>
             <Pie data={data} options={options} />
         </div>
     );
