@@ -25,7 +25,7 @@ function Sidebar() {
           <div className="flex-grow">
             <br />
             <div className="flex pb-5">
-              <Link to={"/expense"} className="flex flex-row items-center">
+              <Link to={"/"} className="flex flex-row items-center">
                 <div className="pr-2">
                   <FaChalkboard />
                 </div>

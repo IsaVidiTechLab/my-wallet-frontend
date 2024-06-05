@@ -59,7 +59,7 @@ function AddCategory({ storedToken, editingCategory, setEditingCategory, categor
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="my-8">
       <input
         type="text"
         value={catName}
@@ -68,8 +68,9 @@ function AddCategory({ storedToken, editingCategory, setEditingCategory, categor
         placeholder="Category Name"
         required
         onChange={(e) => setCatName(e.target.value)}
+        className="p-2 border border-gray-100 rounded-lg mr-4"
       />
-      <button type="submit">
+      <button type="submit" className="py-2 px-3 rounded-lg bg-lightblue text-white font-light hover:bg-white hover:text-darkgray">
         {editingCategory ? "Update Category" : "Add Category"}
       </button>
     </form>

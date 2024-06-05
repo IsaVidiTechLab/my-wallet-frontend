@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { ImTextColor } from 'react-icons/im';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -37,14 +38,52 @@ function MonthlyExpenseGraph({ storedToken, month }) {
 
     const totalAmount = expenses.reduce((sum, expense) => sum + expense.amount, 0);
 
+    const colors = [
+        'rgba(255, 255, 255, 0.7)',
+        'rgba(240, 230, 220, 0.7)',
+        'rgba(220, 210, 220, 0.7)',
+        'rgba(200, 160, 200, 0.7)',
+        'rgba(180, 150, 180, 0.7)',
+        'rgba(160, 160, 160, 0.7)',
+        'rgba(255, 215, 0, 0.7)',
+        'rgba(255, 235, 205, 0.7)',
+        'rgba(255, 228, 196, 0.7)',
+        'rgba(240, 230, 240, 0.7)',
+        'rgba(255, 245, 238, 0.7)',
+        'rgba(245, 255, 250, 0.7)',
+        'rgba(255, 250, 240, 0.7)',
+        'rgba(240, 255, 255, 0.7)',
+        'rgba(240, 248, 255, 0.7)',
+        'rgba(255, 250, 250, 0.7)',
+    ];
+
+    const borderColors = [
+        'rgba(255, 255, 255, 1)',
+        'rgba(240, 240, 240, 1)',
+        'rgba(220, 220, 220, 1)',
+        'rgba(200, 200, 200, 1)',
+        'rgba(180, 180, 180, 1)',
+        'rgba(160, 160, 160, 1)',
+        'rgba(255, 215, 0, 1)',
+        'rgba(255, 235, 205, 1)',
+        'rgba(255, 228, 196, 1)',
+        'rgba(240, 255, 240, 1)',
+        'rgba(255, 245, 238, 1)',
+        'rgba(245, 255, 250, 1)',
+        'rgba(255, 250, 240, 1)',
+        'rgba(240, 255, 255, 1)',
+        'rgba(240, 248, 255, 1)',
+        'rgba(255, 250, 250, 1)',
+    ];
+
     const data = {
         labels: expenses.map(expense => expense.title),
         datasets: [
             {
                 label: 'Expenses by Percentage',
                 data: expenses.map(expense => ((expense.amount / totalAmount) * 100).toFixed(2)),
-                backgroundColor: expenses.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.2)`),
-                borderColor: expenses.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`),
+                backgroundColor: expenses.map((_, index) => colors[index % colors.length]),
+                borderColor: expenses.map((_, index) => borderColors[index % borderColors.length]),
                 borderWidth: 1,
             },
         ],
@@ -55,16 +94,23 @@ function MonthlyExpenseGraph({ storedToken, month }) {
         plugins: {
             legend: {
                 position: 'top',
+                labels: {
+                    color: 'rgba(255, 255, 255, 0.9)', 
+                },
             },
             title: {
                 display: true,
                 text: 'Expenses by Percentage of Total Spent',
+                color: 'rgba(255, 255, 255, 0.9)', 
+            },
+            tooltip: {
+                bodyColor: 'rgba(255, 255, 255, 0.9)', 
             },
         },
     };
 
     return (
-        <div className='w-1/3'>
+        <div className='w-1/2 mt-5'>
             <Pie data={data} options={options} />
         </div>
     );

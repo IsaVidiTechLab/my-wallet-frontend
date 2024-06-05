@@ -44,13 +44,16 @@ function AllCategories({ storedToken, onEdit, categories, setCategories, refresh
   };
 
   return (
-    <div>
-      <ul>
+    <div >
+      <ul className='flex flex-col'>
         {categories.map((category) => (
-          <li key={category._id} className="text-blue-700">
+          <li key={category._id} className="text-white px-4 py-2 border border-gray rounded-md mb-2 flex items-center justify-between">
             {category.catName}
-            <FaEdit onClick={() => handleEdit(category)} className="inline ml-2 cursor-pointer" />
-            <FaTrash onClick={() => handleDelete(category._id)} className="inline ml-2 cursor-pointer" />
+            <li>
+              <FaEdit onClick={() => handleEdit(category)} className="inline ml-2 cursor-pointer hover:text-lightblue" />
+              <FaTrash onClick={() => handleDelete(category._id)} className="inline ml-2 cursor-pointer hover:text-red" />
+            </li>
+           
           </li>
         ))}
       </ul>

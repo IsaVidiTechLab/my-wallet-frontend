@@ -10,7 +10,9 @@ export default {
       midnight: '#222831',
       white: '#eeeeee',
       lightblue: "#76ABAE",
-      darkgray: "#31363F"
+      darkgray: "#31363F",
+      red: "#D90429",
+      gray: "#a9aaab",
   },
   plugins: [],
 }
