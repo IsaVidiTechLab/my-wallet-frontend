@@ -4,12 +4,15 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
     const API_URL = import.meta.env.VITE_API_URL;
     const [expenses, setExpenses] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(5);
+
     const fetchExpenses = async () => {
         try {
             const response = await axios.get(`${API_URL}/api/expenses`, {
                 headers: { Authorization: `Bearer ${storedToken}` }
             });
-            setExpenses(response.data);
+            setExpenses(response.data.reverse());
             console.log("AllExpense expense", response.data);
         } catch (error) {
             console.log(error);
@@ -47,6 +50,18 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
         const category = categories.find(category => category._id === catId);
         return category ? category.catName : 'Unknown Category';
     };
+
+
+    const indexOfLastExpense = currentPage * itemsPerPage;
+    const indexOfFirstExpense = indexOfLastExpense - itemsPerPage;
+    const currentExpenses = expenses.slice(indexOfFirstExpense, indexOfLastExpense);
+
+    const totalPages = Math.ceil(expenses.length / itemsPerPage);
+
+    const handleClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
         <div>
             <table>
@@ -62,7 +77,7 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.map(expense => (
+                    {currentExpenses.map(expense => (
                         <tr key={expense._id} style={{ padding: "10px" }}>
                             <td style={{ padding: "10px" }}>{expense.title}</td>
                             <td style={{ padding: "10px" }}>{expense.amount}</td>
@@ -79,6 +94,24 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
                     ))}
                 </tbody>
             </table>
+            <div className='flex justify-center' style={{ marginTop: "20px" }}>
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index + 1}
+                        onClick={() => handleClick(index + 1)}
+                        style={{
+                            margin: "0 5px",
+                            padding: "5px 10px",
+                            backgroundColor: currentPage === index + 1 ? '#76ABAE' : '#eeeeee',
+                            color: currentPage === index + 1 ? '#ffffff' : '#007bff',
+                            border: '1px solid #76ABAE',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }

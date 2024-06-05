@@ -91,7 +91,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefr
     }
   return (
     <div>
-     <form onSubmit={handleSubmit}>
+     <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
             <input
                 type="text"
                 name="title"
