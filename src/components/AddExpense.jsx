@@ -95,6 +95,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefr
             <input
                 type="text"
                 name="title"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 value={title}
                 onChange={(e)=>setTitle(e.target.value)}
                 placeholder="Title"
@@ -103,6 +104,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefr
             <input
                 type="number"
                 name="amount"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 value={amount}
                 onChange={(e)=>setAmount(e.target.value)}
                 placeholder="Amount"
@@ -111,6 +113,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefr
             <input
                 type="date"
                 name="date"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 value={date}
                 onChange={(e)=>setDate(e.target.value)}
                 required
@@ -118,6 +121,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefr
             <select
                 name="catId"
                 value={selectedCategory}
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 onChange={handleCategoryChange}
                 required
             >
@@ -131,6 +135,7 @@ function AddExpense({ storedToken, editingExpense, setEditingExpense,triggerRefr
             <textarea
                 name="description"
                 value={description}
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 onChange={(e)=>setDescription(e.target.value)}
                 placeholder="Description"
             />
