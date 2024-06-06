@@ -45,7 +45,7 @@ function MonthlyReportPage() {
   };
 
   return (
-    <div className="bg-midnight p-5 md:ml-60 h-svh pt-20 md:pt-10">
+    <div className="bg-midnight p-5 md:ml-60 pt-20 md:pt-10 h-screen">
       <h1 className="font-semibold text-xl pb-3 text-white">Monthly Report</h1>
       <form onSubmit={handleSubmit} className="pb-5">
         <input
