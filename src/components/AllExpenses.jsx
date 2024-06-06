@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { FaEdit, FaTrash } from 'react-icons/fa';
+
 function AllExpenses({ storedToken, onEdit, refreshKey }) {
     const API_URL = import.meta.env.VITE_API_URL;
     const [expenses, setExpenses] = useState([]);
@@ -63,37 +65,31 @@ function AllExpenses({ storedToken, onEdit, refreshKey }) {
     };
 
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentExpenses.map(expense => (
-                        <tr key={expense._id} style={{ padding: "10px" }}>
-                            <td style={{ padding: "10px" }}>{expense.title}</td>
-                            <td style={{ padding: "10px" }}>{expense.amount}</td>
-                            <td style={{ padding: "10px" }}>{new Date(expense.date).toLocaleDateString()}</td>
-                            <td style={{ padding: "10px" }}>{expense.description}</td>
-                            <td style={{ padding: "10px" }}>{getCategoryName(expense.catId)}</td>
-                            <td style={{ padding: "10px" }}>
-                                <button onClick={() => onEdit(expense)}>Edit</button>
-                            </td>
-                            <td style={{ padding: "10px" }}>
-                                <button onClick={() => handleDelete(expense._id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className='all-expenses'>
+        <ul className='flex flex-col'>
+        {currentExpenses.map((expense) => (
+          <li key={expense._id} className="all-expense-card">  
+            <p className='flex flex-col'>
+                <p className='font-bold'>
+                {expense.title}
+                </p>
+                 <p className='flex space-x-4'>
+                    <p>
+                     <b>Amount:</b> {expense.amount}
+                    </p>
+                    <p>
+                    <b>Category:</b> {getCategoryName(expense.catId)}
+                    </p>
+                 </p>
+                
+            </p>
+            <p>
+              <FaEdit onClick={() => onEdit(expense)} className="inline ml-2 cursor-pointer hover:text-lightblue" />
+              <FaTrash onClick={() => handleDelete(expense._id)} className="inline ml-2 cursor-pointer hover:text-red" />
+            </p>
+          </li>
+        ))}
+      </ul>
             <div className='flex justify-center' style={{ marginTop: "20px" }}>
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
