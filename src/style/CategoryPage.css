@@ -1,6 +1,28 @@
-.main-content {
-    margin-left: 15rem;
-    flex: 1;
-    height: 100vh;
-    background-color: #222831
+.bg-midnight {
+  background-color: #222831; 
+  padding: 1.25rem; 
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: left
+}
+
+@media (min-width: 767px) {
+  .bg-midnight {
+    margin-left: 15rem; 
+    padding-top: 2.5rem; 
   }
+}
+
+@media (max-width: 767px) {
+  .bg-midnight {
+    padding-top: 5rem; 
+  }
+}
+
+h1 {
+  font-weight: 600; 
+  font-size: 1.25rem; 
+  color: white;
+}

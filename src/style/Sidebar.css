@@ -34,7 +34,7 @@
   
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .sidebar {
     width: 100%;
     position: fixed;
@@ -46,23 +46,11 @@
   .sidebar.open {
     transform: translateY(0);
   }
+}
 
+@media screen and (max-width: 767px) {
   .mobile-menu-button {
     display: block;
-  }
-}
-
-
-.main-content {
-  margin-left: 15rem;
-  padding: 1rem;
-  transition: margin-left 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-    padding: 1rem;
   }
 
   .sidebar.open + .main-content {
