@@ -39,7 +39,7 @@ function MonthlyReportPage() {
     fetchMonthlyExpenses(month);
   };
   return (
-    <div className="bg-midnight p-5 md:ml-60 pt-20 md:pt-10 h-screen">
+    <div className="bg-midnight p-5 md:ml-60 pt-20 md:pt-10  ">
       <h1 className="font-semibold text-xl pb-3 text-white">Monthly Report</h1>
       <form onSubmit={handleSubmit} className="pb-5">
         <input
@@ -57,66 +57,34 @@ function MonthlyReportPage() {
           Submit
         </button>
       </form>
-      <div className="table-container overflow-x-auto">
-        <table className="min-w-full rounded-md border border-gray mb-5 text-white">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 border-b-2 border-gray text-left">
-                Title
-              </th>
-              <th className="px-4 py-2 border-b-2 border-gray text-left">
-                Amount
-              </th>
-              <th className="px-4 py-2 border-b-2 border-gray text-left">
-                Date
-              </th>
-              <th className="px-4 py-2 border-b-2 border-gray bg-gray-100 text-left leading-4 text-white">
-                Description
-              </th>
-              <th className="px-4 py-2 border-b-2 border-gray bg-gray-100 text-left leading-4 text-white">
-                Category
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {monthlyData.map((data) => (
-              <tr key={data._id} className="hover:bg-gray-50">
-                <td
-                  data-label="Title"
-                  className="px-4 py-2 border-b border-gray"
-                >
-                  {data.title}
-                </td>
-                <td
-                  data-label="Amount"
-                  className="px-4 py-2 border-b border-gray"
-                >
-                  {data.amount}
-                </td>
-                <td
-                  data-label="Date"
-                  className="px-4 py-2 border-b border-gray"
-                >
-                  {new Date(data.date).toLocaleDateString()}
-                </td>
-                <td
-                  data-label="Description"
-                  className="px-4 py-2 border-b border-gray"
-                >
-                  {data.description}
-                </td>
-                <td
-                  data-label="Category"
-                  className="px-4 py-2 border-b border-gray"
-                >
-                  {data.categoryName}
-                </td>
+
+      <div className="report-container">
+        <div className="table-container">
+          <table className="min-w-full rounded-md border border-gray mb-5 text-white">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 border-b-2 border-gray text-left">Title</th>
+                <th className="px-4 py-2 border-b-2 border-gray text-left">Amount</th>
+                <th className="px-4 py-2 border-b-2 border-gray text-left">Date</th>
+                <th className="px-4 py-2 border-b-2 border-gray bg-gray-100 text-left leading-4 text-white">Description</th>
+                <th className="px-4 py-2 border-b-2 border-gray bg-gray-100 text-left leading-4 text-white">Category</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {monthlyData.map((data) => (
+                <tr key={data._id} className="hover:bg-gray-50">
+                  <td data-label="Title" className="px-4 py-2 border-b border-gray">{data.title}</td>
+                  <td data-label="Amount" className="px-4 py-2 border-b border-gray">{data.amount}</td>
+                  <td data-label="Date" className="px-4 py-2 border-b border-gray">{new Date(data.date).toLocaleDateString()}</td>
+                  <td data-label="Description" className="px-4 py-2 border-b border-gray">{data.description}</td>
+                  <td data-label="Category" className="px-4 py-2 border-b border-gray">{data.categoryName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <MonthlyExpenseGraph storedToken={storedToken} month={month} />
       </div>
-      <MonthlyExpenseGraph storedToken={storedToken} month={month} />
     </div>
   );
 }
