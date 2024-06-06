@@ -1,12 +1,9 @@
-.bg-midnight {
-  background-color: #1a202c; /* Example background color */
-}
 
 .text-white {
   color: #fff;
 }
 
-.table-container {
+.year-table-container {
   overflow-x: auto;
 }
 
@@ -26,6 +23,7 @@ th {
   background-color: #2d3748;
   color: #fff;
 }
+
 
 tbody tr:hover {
   background-color: #4a5568;
@@ -70,6 +68,10 @@ tbody tr:hover {
   }
 
   table td:last-child {
-      border-bottom: 0;
+      border-bottom: 3px solid #e2e8f0;
   }
+
+ 
+  
 }
+

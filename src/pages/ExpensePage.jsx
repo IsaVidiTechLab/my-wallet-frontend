@@ -19,7 +19,7 @@ function ExpensePage() {
     };
 
   return (
-    <div className='bg-midnight p-5 md:ml-60 h-svh pt-20 md:pt-10'>
+    <div className='bg-midnight p-5 md:ml-60 h-screen pt-20 md:pt-10 overflow-auto'>
     <>
       <h1 className=' font-semibold text-2xl text-white mb-4'>Expenses</h1>
     </>
