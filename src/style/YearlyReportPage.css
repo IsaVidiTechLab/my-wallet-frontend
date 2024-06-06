@@ -29,6 +29,11 @@ tbody tr:hover {
   background-color: #4a5568;
 }
 
+year-graph{
+  @apply mt-5;
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   table {
       border: 0;
@@ -69,6 +74,10 @@ tbody tr:hover {
 
   table td:last-child {
       border-bottom: 3px solid #e2e8f0;
+  }
+
+  .year-graph{
+    width: 50%;
   }
 
  

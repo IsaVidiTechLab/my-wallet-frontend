@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
+import "../style/YearlyReportPage.css";
 
 function YearlyExpenseGraph({monthlyData}) {
     
@@ -38,7 +39,7 @@ function YearlyExpenseGraph({monthlyData}) {
       };
   
     return (
-      <div className='w-64 mt-5'> 
+      <div className='md:w-1/2 mt-5'> 
         <Pie data={chartData} />
       </div>
     );

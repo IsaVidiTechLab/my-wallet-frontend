@@ -1,3 +1,6 @@
+.bg-midnight {
+  background-color: #1a202c;
+}
 
 .text-white {
   color: #fff;
@@ -24,54 +27,65 @@ th {
   color: #fff;
 }
 
-
 tbody tr:hover {
   background-color: #4a5568;
 }
 
+.report-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .report-container {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .table-container, .report-container > div {
+    width: 88%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   table {
-      border: 0;
+    border: 0;
   }
 
   table caption {
-      font-size: 1.3em;
+    font-size: 1.3em;
   }
 
   table thead {
-      border: none;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
   }
 
   table tr {
-      display: block;
-      margin-bottom: 0.625em;
+    display: block;
+    margin-bottom: 0.625em;
   }
 
   table td {
-      display: block;
-      font-size: 0.8em;
-      text-align: right;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
   }
 
   table td::before {
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-      text-transform: uppercase;
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   table td:last-child {
-      border-bottom: 3px solid #e2e8f0;
+    border-bottom: 3px solid #e2e8f0;
   }
-
- 
-  
 }
-
