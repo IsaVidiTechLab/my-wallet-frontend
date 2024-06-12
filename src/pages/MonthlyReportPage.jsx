@@ -89,7 +89,10 @@ function MonthlyReportPage() {
             </tbody>
           </table>
         </div>
+        <div>
         <MonthlyExpenseGraph storedToken={storedToken} month={month} />
+        </div>
+        
       </div>
     </div>
   );
