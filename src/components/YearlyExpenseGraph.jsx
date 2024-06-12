@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
+import "../style/YearlyReportPage.css";
 
 function YearlyExpenseGraph({monthlyData}) {
     
@@ -19,17 +20,26 @@ function YearlyExpenseGraph({monthlyData}) {
             label: 'Total Amount',
             data: amounts,
             backgroundColor: [
-              '#FF6384', '#36A2EB', '#FFCE56', '#FF6384', '#36A2EB',
-              '#FFCE56', '#FF6384', '#36A2EB', '#FFCE56', '#FF6384',
-              '#36A2EB', '#FFCE56'
-            ]
+              'rgba(160, 160, 160, 0.7)',
+              'rgba(240, 230, 220, 0.7)',
+              'rgba(203, 195, 227, 0.7)',
+              'rgba(218, 247, 166, 0.7)',
+              'rgba(240, 230, 240, 0.7)',              
+              'rgba(255,212,229, 0.7)',
+              'rgba(255, 235, 205, 0.7)', 
+              'rgba(255, 228, 196, 0.7)',
+              'rgba(255, 255, 255, 0.7)',     
+              'rgba(220, 210, 220, 0.7)', 
+              'rgba(200, 160, 200, 0.7)', 
+              'rgba(180, 150, 180, 0.7)'
+            ],
+            borderWidth: 1
           }
         ]
       };
   
     return (
-      <div className='w-64 h-64'>
-        
+      <div className='md:w-1/2 mt-5'> 
         <Pie data={chartData} />
       </div>
     );

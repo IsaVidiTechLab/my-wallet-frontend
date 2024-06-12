@@ -1,5 +1,86 @@
-.main-content {
-    margin-left: 15rem; 
-    padding: 2rem;
-    flex: 1;
+
+.text-white {
+  color: #fff;
+}
+
+.year-table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  background-color: #2d3748;
+  color: #fff;
+}
+
+
+tbody tr:hover {
+  background-color: #4a5568;
+}
+
+year-graph{
+  @apply mt-5;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  table {
+      border: 0;
   }
+
+  table caption {
+      font-size: 1.3em;
+  }
+
+  table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+  }
+
+  table tr {
+      display: block;
+      margin-bottom: 0.625em;
+  }
+
+  table td {
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+  }
+
+  table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+  }
+
+  table td:last-child {
+      border-bottom: 3px solid #e2e8f0;
+  }
+
+  .year-graph{
+    width: 50%;
+  }
+
+ 
+  
+}
+

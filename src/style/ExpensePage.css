@@ -1,6 +1,64 @@
 .main-content {
-    margin-left: 15rem; 
-    padding: 2rem;
-    flex: 1;
-    height: 100vh;
+    @apply p-5 md:ml-60 h-svh pt-20 md:pt-10 bg-midnight flex flex-col gap-4
+  }
+
+  .expense-info{
+    @apply flex flex-row gap-4 ;
+    width: 100%;
+  }
+
+  .add-expense{
+    @apply items-center;
+    width: 50%;
+  }
+
+  .all-expenses{
+    @apply items-center;
+    width: 50%;
+  }
+
+  .add-expense-form{
+    @apply flex flex-col gap-3 w-full;
+  }
+
+  .all-expense-card{
+    @apply text-white px-4 py-2 border border-gray rounded-md mb-2 flex items-center justify-between w-full;
+  }
+
+  @media (max-width: 640px) {
+    .expense-info{
+      @apply flex flex-col gap-4  
+    }
+
+    .add-expense{
+      width: fit-content;
+    }
+  
+    .all-expenses{
+      width: fit-content;
+    }
+    .add-expense-form{
+      @apply w-full;
+    }
+    .all-expense-card{
+      @apply w-full;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .expense-info{
+      @apply flex flex-col gap-4  
+    }
+    .add-expense{
+      width: fit-content;
+    }
+    .all-expenses{
+      width: fit-content;
+    }
+    .add-expense-form{
+      @apply w-80;
+    }
+    .all-expense-card{
+      @apply w-80
+    }
   }

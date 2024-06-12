@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MonthlyExpenseGraph from "../components/MonthlyExpenseGraph";
 import "../style/MonthlyReportPage.css";
-
 function MonthlyReportPage() {
   const API_URL = import.meta.env.VITE_API_URL;
   const storedToken = localStorage.getItem("authToken");
   const [month, setMonth] = useState(new Date().toISOString().slice(0, 7));
   const [monthlyData, setMonthlyData] = useState([]);
-
   const fetchMonthlyExpenses = (selectedMonth) => {
     const [year, monthIndex] = selectedMonth.split("-");
     const requestBody = {
       year: parseInt(year),
       month: parseInt(monthIndex),
     };
-
     axios
       .post(`${API_URL}/api/expenses/monthlyReport`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -34,16 +31,13 @@ function MonthlyReportPage() {
         setMonthlyData([]);
       });
   };
-
   useEffect(() => {
     fetchMonthlyExpenses(month);
   }, [month]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchMonthlyExpenses(month);
   };
-
   return (
     <div className="bg-midnight p-5 md:ml-60 pt-20 md:pt-10  ">
       <h1 className="font-semibold text-xl pb-3 text-white">Monthly Report</h1>
@@ -97,5 +91,4 @@ function MonthlyReportPage() {
     </div>
   );
 }
-
 export default MonthlyReportPage;

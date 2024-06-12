@@ -19,11 +19,11 @@ function ExpensePage() {
     };
 
   return (
-    <div className='main-content bg-white flex flex-col gap-4'>
+    <div className='bg-midnight p-5 md:ml-60 h-screen pt-20 md:pt-10 overflow-auto'>
     <>
-      <h1 className=' font-semibold text-xl'>Expenses</h1>
+      <h1 className=' font-semibold text-2xl text-white mb-4'>Expenses</h1>
     </>
-    <div className='flex flex-row gap-4'>
+    <div className='expense-info'>
       <AddExpense storedToken={storedToken} editingExpense={editingExpense} setEditingExpense={setEditingExpense} triggerRefresh={triggerRefresh}/>
       <AllExpenses storedToken={storedToken} onEdit={handleEdit} refreshKey={triggerRefresh}/>
     </div>
