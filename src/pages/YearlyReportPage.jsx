@@ -34,7 +34,7 @@ function YearlyReportPage() {
 
 
   return (
-    <div className='bg-midnight p-5 md:ml-60 h-screen pt-20 md:pt-10 overflow-auto'>
+    <div className='bg-midnight p-5 md:ml-60 h-screen pt-20 md:pt-10 overflow-auto '>
     <h1 className="font-semibold text-xl pb-3 text-white">Yearly Report</h1>
     <form onSubmit={handleSubmit} className="pb-5">
       <input
@@ -51,7 +51,8 @@ function YearlyReportPage() {
         type='submit'>Submit</button>
     </form>
 
-    <div className="year-table-container">
+    <div className="report-container">
+      <div className='table-container'>
     <table className=" min-w-full rounded-md border border-gray mb-5 text-white">
     
       <thead>
@@ -73,7 +74,7 @@ function YearlyReportPage() {
       })}
       </tbody>
     </table>
-    
+    </div>
     </div>
     {mothlyData && <YearlyExpenseGraph monthlyData={ mothlyData}/>}
     
